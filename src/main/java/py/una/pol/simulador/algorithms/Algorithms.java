@@ -11,7 +11,6 @@ import org.jgrapht.graph.SimpleWeightedGraph;
 import py.una.pol.simulador.model.*;
 import org.jgrapht.Graph;
 import py.una.pol.simulador.utils.Utils;
-import sun.rmi.runtime.Log;
 
 import java.awt.image.AreaAveragingScaleFilter;
 import java.lang.reflect.InvocationTargetException;

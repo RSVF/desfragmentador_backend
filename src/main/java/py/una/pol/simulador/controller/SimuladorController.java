@@ -45,12 +45,12 @@ public class SimuladorController {
     @Autowired
     SocketClient socketClient;
 
-//    @CrossOrigin(origins = "http://localhost:4300")
-//    @PostMapping("/simular")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/simular")
     @MessageMapping("/simular")
     public void simular(@RequestBody Options options) throws Exception {
 
-        //socketClient.startConnection("127.0.0.1",9999);
+        socketClient.startConnection("127.0.0.1",9999);
         List<Demand> demands;
         List<EstablisedRoute> establishedRoutes = new ArrayList<EstablisedRoute>();
         Graph net = createTopology2("usnet.json", options.getCores(), options.getFsWidth(), options.getCapacity());
@@ -122,17 +122,17 @@ public class SimuladorController {
                             tested[core] = true;//Se marca el core probado
                             if(!Arrays.asList(tested).contains(false)){//Se ve si ya se probaron todos los cores
                                 //Bloqueo
-                                //System.out.println("BLOQUEO");
+                                System.out.println("BLOQUEO");
                                 blocked = true;
-                                //System.out.println("Va a desfragmentar con :" + establishedRoutes.size() + " rutas");
-                                ///if((defragS || (i - last_defrag_time >= tmin))){
-                                    //defragS = Algorithms.aco_def(net,establishedRoutes,antsq,aco_def_metric,FSMinPC,aco_improv,options.getRoutingAlg(),ksp,options.getCapacity(), kspList);
-                                    //defragsQ++;
-                                    //if(!defragS){
-                                    //    defragsF++;
-                                    //    last_defrag_time = i;
-                                    //}
-                                //}
+                                System.out.println("Va a desfragmentar con :" + establishedRoutes.size() + " rutas");
+                                if((defragS || (i - last_defrag_time >= tmin))){
+                                    defragS = Algorithms.aco_def(net,establishedRoutes,antsq,aco_def_metric,FSMinPC,aco_improv,options.getRoutingAlg(),ksp,options.getCapacity(), kspList).isEmpty();
+                                    defragsQ++;
+                                    if(!defragS){
+                                        defragsF++;
+                                        last_defrag_time = i;
+                                    }
+                                }
                                 demand.setBlocked(true);
                                 //this.template.convertAndSend("/message",  demand);
                                 //break;
@@ -223,7 +223,7 @@ public class SimuladorController {
 
     @GetMapping("/getTopology")
     public String getTopología() {
-       /* Graph g = createTopology2("nsfnet.json",4,12.5,350);
+        Graph g = createTopology2("nsfnet.json",4,12.5,350);
         KShortestSimplePaths ksp = new KShortestSimplePaths(g);
 
             //k caminos más cortos entre source y destination de la demanda actual
@@ -238,8 +238,7 @@ public class SimuladorController {
         });
         Writer writer = new StringWriter();
         exporter.exportGraph(g, writer);
-        return writer.toString();*/
-       return "x";
+        return writer.toString();
     }
 
     private int getCore(int limit, boolean [] tested){

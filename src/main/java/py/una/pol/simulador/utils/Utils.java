@@ -17,7 +17,6 @@ import java.util.*;
 
 import org.jgrapht.Graph;
 import py.una.pol.simulador.socket.SocketClient;
-import sun.security.provider.certpath.Vertex;
 
 public class Utils {
 
