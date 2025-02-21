@@ -2,7 +2,6 @@ package py.una.pol.simulador.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.javafx.geom.Edge;
 import org.jgrapht.Graph;
 import org.jgrapht.GraphPath;
 import org.jgrapht.alg.shortestpath.KShortestSimplePaths;
@@ -12,7 +11,6 @@ import org.jgrapht.graph.SimpleWeightedGraph;
 import org.jgrapht.nio.Attribute;
 import org.jgrapht.nio.DefaultAttribute;
 import org.jgrapht.nio.dot.DOTExporter;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -28,7 +26,6 @@ import py.una.pol.simulador.utils.Utils;
 import py.una.pol.simulador.algorithms.Algorithms;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
-import javax.rmi.CORBA.Util;
 import java.io.*;
 import java.lang.reflect.Method;
 import java.util.*;
